@@ -1,4 +1,9 @@
-.wrapper{
+.wrapper {
+    --search-border-radius: 92px;
+    --search-height: 46px;
+    --search-top-spacer: 9px;
+    --search-button-width: 52px;
+
     height: var(--default-layout-header-height);
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
     display: flex;
@@ -6,8 +11,89 @@
     width: 100%;
 }
 
-.inner{
+.inner {
     height: 100%;
     width: var(--default-layout-width);
-    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-result,
+.search {
+    width: 361px;
+}
+
+.search {
+    height: var(--search-height);
+    background-color: rgba(22, 24, 35, 0.06);
+    border-radius: var(--search-border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 18px;
+    position: relative;
+    border: 1.5px solid transparent;
+
+    input {
+        flex: 1;
+        height: var(--search-height);
+        background-color: transparent;
+        font-size: 1.6rem;
+        caret-color: var(--primary-color);
+        color: black;
+    }
+
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        top: var(--search-top-spacer);
+        right: var(--search-button-width);
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+
+.search-title {
+    padding: 5px 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
+}
+
+.clear,
+.loading {
+    color: rgba(22, 24, 35, 0.34);
+    position: absolute;
+    right: calc(var(--search-button-width) + 16px);
+}
+
+.search-btn {
+    color: rgba(22, 24, 35, 0.34);
+    width: var(--search-button-width);
+    font-size: 1.8rem;
+    height: 100%;
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+}
+
+.actions {
 }
